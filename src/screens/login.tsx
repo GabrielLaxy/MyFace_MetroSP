@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import { TextInput, Button, IconButton } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -9,7 +10,21 @@ import styles from '../styles/loginStyle';
 const mascote = require('../../assets/Mascote-Metro-SP 3.png');
 const logo = require('../../assets/Metro logo.png');
 
-export default function Login() {
+type RootStackParamList = {
+	Login: undefined;
+	Cadastro: undefined;
+};
+
+type LoginScreenNavigationProp = StackNavigationProp<
+	RootStackParamList,
+	'Login'
+>;
+
+interface LoginProps {
+	navigation: LoginScreenNavigationProp;
+}
+
+export default function Login({ navigation }:LoginProps) {
 	const [funcional, setFuncional] = useState('');
 	const [senha, setSenha] = useState('');
 	const [mostrarSenha, setMostrarSenha] = useState(false);
@@ -65,7 +80,10 @@ export default function Login() {
 				</TouchableOpacity>
 				<Button
 					mode="contained"
-					onPress={handleLogin}
+					onPress={() => {
+						handleLogin(); 
+						navigation.navigate('Cadastro'); 
+					}}
 					style={styles.button}
 					labelStyle={styles.buttonLabel}
 				>

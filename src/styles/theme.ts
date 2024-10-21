@@ -1,7 +1,12 @@
-import { MD3LightTheme } from 'react-native-paper';
+import { MD3LightTheme, configureFonts } from 'react-native-paper';
+
+const fontConfig = {
+    fontFamily:"Helvetica-Regular",
+};
 
 const theme = {
     ...MD3LightTheme,
+    fonts: configureFonts({config: fontConfig}),
     roundness: 7,
     colors: {
       ...MD3LightTheme.colors,

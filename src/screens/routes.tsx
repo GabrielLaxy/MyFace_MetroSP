@@ -1,13 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
+import Login from './login';
+import Cadastro from './cadastro_funcionario';
 
 const Stack = createStackNavigator();
 
-function MyStack() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Notifications" component={Cadastro} />
-    </Stack.Navigator>
-  );
+export default function Routes() {
+	return (
+		<Stack.Navigator initialRouteName="Login">
+			<Stack.Screen
+				name="Login"
+				component={Login}
+				options={{ headerShown: false }}
+			/>
+			<Stack.Screen
+				name="Cadastro"
+				component={Cadastro}
+				options={{ headerShown: false }}
+			/>
+		</Stack.Navigator>
+	);
 }
